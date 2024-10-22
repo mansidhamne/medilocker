@@ -73,7 +73,7 @@ const AddPatient = () => {
         const newPatient = await response.json();
         setPatientId(newPatient.id); 
         alert('Patient added successfully!');
-        router.push('/dashboard');
+        router.push('/dashboar');
       } else {
         alert('Failed to add patient.');
       }

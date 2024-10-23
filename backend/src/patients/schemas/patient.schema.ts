@@ -12,7 +12,10 @@ export interface Prescription {
 export interface Appointment {
   problem: string;
   date: Date; // You may want to change this to Date type for better date handling
+  time: string;
   mode: string;
+  type: string;
+  notes: string;
   prescription: Prescription[];
 }
 
@@ -62,6 +65,9 @@ export class Patient {
         problem: { type: String, required: true },
         date: { type: String, required: true }, // Consider using Date type if you want better date management
         mode: { type: String, required: true },
+        type: { type: String, required: true },
+        notes: { type: String, required: false },
+        time: { type: String, required: true },
         prescription: [
           {
             medicine: { type: String, required: true },

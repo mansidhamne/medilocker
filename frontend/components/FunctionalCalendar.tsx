@@ -1,13 +1,14 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaCalendarAlt, FaChevronLeft, FaChevronRight, FaUserMd } from "react-icons/fa"
 
 type Appointment = {
   id: string
   time: string
-  patientName: string
-  type: string
+  patient: string
+  mode: string
+  date: string
 }
 
 type AppointmentsByDate = {
@@ -17,18 +18,35 @@ type AppointmentsByDate = {
 const FunctionalCalendar: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState(new Date())
+  const [appointmentsData, setAppointmentsData] = useState<AppointmentsByDate>({});
 
-  // Mock appointments data
-  const appointmentsByDate: AppointmentsByDate = {
-    '2024-10-16': [
-      { id: '1', time: '10:00 AM', patientName: 'Alice Johnson', type: 'Check-up' },
-      { id: '2', time: '02:30 PM', patientName: 'Bob Smith', type: 'Follow-up' },
-    ],
-    '2024-10-17': [
-      { id: '3', time: '09:30 AM', patientName: 'Charlie Brown', type: 'New Patient' },
-      { id: '4', time: '11:00 AM', patientName: 'Diana Prince', type: 'Consultation' },
-    ],
-  }
+  const fetchAppointments = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/appointment', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const data = await response.json();
+      // Transform data into appointmentsByDate format
+      const appointmentsByDate: AppointmentsByDate = {};
+      data.forEach((apt: Appointment) => {
+        const date = apt.date; // Assuming your API returns date in ISO format
+        if (!appointmentsByDate[date]) {
+          appointmentsByDate[date] = [];
+        }
+        appointmentsByDate[date].push(apt);
+      });
+      setAppointmentsData(appointmentsByDate);
+    } catch (error) {
+      console.error('Error fetching appointments:', error);
+      setAppointmentsData({}); // Fallback to empty object on error
+    }
+  };
+
+  useEffect(() => {
+    fetchAppointments();
+  }, []);
+
 
   const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate()
   const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay()
@@ -52,7 +70,15 @@ const FunctionalCalendar: React.FC = () => {
     return date.toISOString().split('T')[0]
   }
 
-  const selectedDateAppointments = appointmentsByDate[formatDate(selectedDate)] || []
+  const renderMode = (mode: string) => { 
+    switch (mode) {
+      case 'online': return <p>Online</p>
+      case 'in-person': return <p>In-Person</p>
+      default: return mode
+    }
+  }
+
+  const selectedDateAppointments = appointmentsData[formatDate(selectedDate)] || []
 
   return (
     <div className="w-full lg:w-84 space-y-6">
@@ -96,7 +122,7 @@ const FunctionalCalendar: React.FC = () => {
                 className={`h-8 w-8 flex items-center justify-center rounded-full
                   ${isToday(date) ? 'bg-blue-500 text-white' : 
                     isSelected ? 'bg-blue-100 text-blue-800' : 'text-gray-700 hover:bg-gray-100'}
-                  ${appointmentsByDate[formatDate(date)] ? ' text-green-500' : ''}
+                  ${appointmentsData[formatDate(date)] ? ' text-green-500' : ''}
                 `}
               >
                 {i + 1}
@@ -117,8 +143,8 @@ const FunctionalCalendar: React.FC = () => {
             {selectedDateAppointments.map((apt) => (
               <li key={apt.id} className="flex items-center space-x-3 text-sm">
                 <span className="text-blue-500 font-medium">{apt.time}</span>
-                <span className="flex-1">{apt.patientName}</span>
-                <span className="text-gray-500">{apt.type}</span>
+                <span className="flex-1">{apt.patient}</span>
+                <span className="text-gray-500">{renderMode(apt.mode)}</span>
               </li>
             ))}
           </ul>

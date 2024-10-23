@@ -1,13 +1,12 @@
 "use client"
 import Navbar from '@/components/common/Navbar'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link';
 import { MdOutlineEditCalendar } from "react-icons/md";
 import { IoCall } from "react-icons/io5";
 import { BiInjection } from "react-icons/bi";
 import PatientTable from '@/components/PatientTable';
 import { motion } from 'framer-motion';
-import { FaCalendarAlt, FaUserMd } from 'react-icons/fa';
 import FunctionalCalendar from '@/components/FunctionalCalendar';
 
 
@@ -16,20 +15,42 @@ const DoctorDashboard = () => {
   const tomorrow = new Date(today)
   tomorrow.setDate(tomorrow.getDate() + 1)
 
-  const todayAppointments = [
-    { id: 1, time: '10:00 AM', patientName: 'Alice Johnson', type: 'Check-up' },
-    { id: 2, time: '02:30 PM', patientName: 'Bob Smith', type: 'Follow-up' },
-  ]
-
-  const tomorrowAppointments = [
-    { id: 3, time: '09:30 AM', patientName: 'Charlie Brown', type: 'New Patient' },
-    { id: 4, time: '11:00 AM', patientName: 'Diana Prince', type: 'Consultation' },
-  ]
-
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
   }
+
+  const [totalAppointments, setTotalAppointments] = useState(0);
+  const [totalOnlineAppointments, setTotalOnlineAppointments] = useState(0);
+
+  useEffect(() => {
+    const fetchTotalAppointments = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/appointment/total');
+        const data = await response.json();
+        setTotalAppointments(data.total);
+      } catch (error) {
+        console.error('Error fetching total appointments:', error);
+      }
+    };
+
+    fetchTotalAppointments();
+  }, []);
+
+  useEffect(() => {
+    const fetchTotalOnlineAppointments = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/appointment/total-online');
+        const data = await response.json();
+        setTotalOnlineAppointments(data.total);
+      } catch (error) {
+        console.error('Error fetching total online appointments:', error);
+      }
+    };
+  
+    fetchTotalOnlineAppointments();
+  }, []);
+
 
   return (
     <div className="bg-gradient-to-br from-blue-50 to-teal-50 min-h-screen w-full pb-6">
@@ -50,7 +71,7 @@ const DoctorDashboard = () => {
                   <MdOutlineEditCalendar className="text-4xl text-teal-500 bg-teal-100 rounded-full p-2 mr-4" />
                   <h2 className="text-xl font-semibold text-gray-700">Appointments</h2>
                 </div>
-                <p className="text-4xl font-bold text-teal-600">20</p>
+                <p className="text-4xl font-bold text-teal-600">{totalAppointments}</p>
                 <Link href="/appointments" className="text-teal-500 hover:text-teal-600 mt-2 inline-block">
                   View all
                 </Link>
@@ -67,7 +88,7 @@ const DoctorDashboard = () => {
                   <IoCall className="text-4xl text-yellow-500 bg-yellow-100 rounded-full p-2 mr-4" />
                   <h2 className="text-xl font-semibold text-gray-700">Call Consultancy</h2>
                 </div>
-                <p className="text-4xl font-bold text-yellow-600">12</p>
+                <p className="text-4xl font-bold text-yellow-600">{totalOnlineAppointments}</p>
                 <Link href="/consultations" className="text-yellow-500 hover:text-yellow-600 mt-2 inline-block">
                   View details
                 </Link>
@@ -116,35 +137,6 @@ const DoctorDashboard = () => {
             //className="w-full lg:w-80 space-y-6"
           >
             <FunctionalCalendar/>
-            {/* <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                <FaUserMd className="mr-2 text-green-500" /> Today&apos;s Top Appointments
-              </h2>
-              <ul className="space-y-3">
-                {todayAppointments.map((apt) => (
-                  <li key={apt.id} className="flex items-center space-x-3 text-sm">
-                    <span className="text-blue-500 font-medium">{apt.time}</span>
-                    <span className="flex-1">{apt.patientName}</span>
-                    <span className="text-gray-500">{apt.type}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                <FaUserMd className="mr-2 text-purple-500" /> Tomorrow&apos;s Top Appointments
-              </h2>
-              <ul className="space-y-3">
-                {tomorrowAppointments.map((apt) => (
-                  <li key={apt.id} className="flex items-center space-x-3 text-sm">
-                    <span className="text-blue-500 font-medium">{apt.time}</span>
-                    <span className="flex-1">{apt.patientName}</span>
-                    <span className="text-gray-500">{apt.type}</span>
-                  </li>
-                ))}
-              </ul>
-            </div> */}
           </motion.div>
         </div>
       </div>

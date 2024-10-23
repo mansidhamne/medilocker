@@ -1,23 +1,16 @@
 'use client'
 
-import { useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, ChevronRight, Folder, Search, User } from 'lucide-react'
 import PatientDetails from '@/components/PatientDetails' // Assuming the previous component is in this file
 import Navbar from '@/components/common/Navbar'
 
 type Patient = {
-  id: string
-  name: string
-  dateOfBirth: string
+  _id: string
+  firstName: string
+  lastName: string
 }
-
-const patients: Patient[] = [
-  { id: '1', name: 'Alice Johnson', dateOfBirth: '1990-05-15' },
-  { id: '2', name: 'Bob Smith', dateOfBirth: '1985-11-30' },
-  { id: '3', name: 'Charlie Brown', dateOfBirth: '1995-02-20' },
-  // Add more patients as needed
-]
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 
@@ -25,13 +18,33 @@ export default function PatientDirectory() {
   const [selectedLetter, setSelectedLetter] = useState<string | null>(null)
   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
+  const [patientsData, setPatientsData] = useState<Patient[]>([])
 
-  const filteredPatients = patients.filter(patient => 
-    patient.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const fetchPatients = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/patients', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      setPatientsData(data);
+    } catch (error) {
+      console.error('Error fetching patients:', error);
+    }
+  }
+
+  useEffect(() => {
+    fetchPatients();
+  }, []);
+  
+  const filteredPatients = patientsData.filter(patient => 
+    patient.firstName.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   const groupedPatients = alphabet.reduce((acc, letter) => {
-    acc[letter] = filteredPatients.filter(patient => patient.name.toUpperCase().startsWith(letter))
+    acc[letter] = filteredPatients.filter(patient => patient.firstName.toUpperCase().startsWith(letter))
     return acc
   }, {} as Record<string, Patient[]>)
 
@@ -47,6 +60,7 @@ export default function PatientDirectory() {
   return (
     <div className="min-h-screen bg-gray-100 px-8">
       <Navbar />
+      <div className="px-12">
       <h1 className="text-3xl font-semibold my-8">Patient Directory</h1>
       <div className="mb-6 flex gap-4 w-full">
         <input
@@ -98,7 +112,7 @@ export default function PatientDirectory() {
                   >
                     {groupedPatients[letter].map(patient => (
                       <motion.li
-                        key={patient.id}
+                        key={patient._id}
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -20 }}
@@ -109,7 +123,7 @@ export default function PatientDirectory() {
                           onClick={() => setSelectedPatient(patient)}
                         >
                           <User className="inline-block mr-2 h-4 w-4" />
-                          {patient.name}
+                          {patient.firstName} {patient.lastName}
                         </button>
                       </motion.li>
                     ))}
@@ -128,11 +142,12 @@ export default function PatientDirectory() {
               transition={{ duration: 0.3 }}
               className="bg-white rounded-lg shadow p-6 h-[calc(100vh-200px)] overflow-y-auto"
             >
-              <PatientDetails patientId={selectedPatient.id} />
+              <PatientDetails id={selectedPatient._id} />
             </motion.div>
           )}
         </AnimatePresence>
       </motion.div>
+    </div>
     </div>
   )
 }

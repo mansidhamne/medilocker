@@ -52,7 +52,9 @@ export class PatientController {
   }
 
   @Get(':id/appointments')
-  async getAppointments(@Param('id') patientId: string): Promise<Appointment[]> {
+  async getAppointments(
+    @Param('id') patientId: string,
+  ): Promise<Appointment[]> {
     return this.patientService.getAppointmentsFromPatient(patientId);
   }
 

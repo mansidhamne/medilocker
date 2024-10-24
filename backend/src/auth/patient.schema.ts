@@ -27,12 +27,6 @@ export class Patient extends Document {
   googleId?: string;
 
   @Prop()
-  dateOfBirth: Date;
-
-  @Prop()
-  phoneNumber: string;
-
-  @Prop()
   profilePicture?: string;
 }
 

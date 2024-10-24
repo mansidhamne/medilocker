@@ -34,6 +34,24 @@ export class PatientService {
     return patient;
   }
 
+  async findPatientIdByFirstName(firstName: string): Promise<string | null> {
+    const patient = await this.patientModel
+      .findOne({ firstName })
+      .select('_id')
+      .exec();
+    return patient ? patient._id.toString() : null; // Return ID or null
+  }
+
+  async findPatientByFirstName(firstName: string): Promise<Patient> {
+    const patient = await this.patientModel.findOne({ firstName }).exec();
+    if (!patient) {
+      throw new NotFoundException(
+        `Patient with first name "${firstName}" not found`,
+      );
+    }
+    return patient; // Return the entire patient document
+  }
+
   async deleteById(id: string): Promise<void> {
     const result = await this.patientModel.findByIdAndDelete(id).exec();
     if (!result) {
@@ -107,6 +125,6 @@ export class PatientService {
     if (patient && patient.appointments[appointmentIndex]) {
       return patient.appointments[appointmentIndex].prescription;
     }
-    return null;  // Return null if appointment or prescription is not found
+    return null; // Return null if appointment or prescription is not found
   }
 }

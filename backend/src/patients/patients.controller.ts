@@ -7,6 +7,7 @@ import {
   Delete,
   Put,
   Param,
+  NotFoundException,
 } from '@nestjs/common';
 import { PatientService } from './patients.service';
 import { CreatePatientDto } from './dto/create-patient.dto';
@@ -28,6 +29,26 @@ export class PatientController {
   @Get(':id')
   findById(@Param('id') id: string): Promise<Patient> {
     return this.patientService.findById(id);
+  }
+
+  @Get('find-by-id/:firstName')
+  async findPatientIdByFirstName(@Param('firstName') firstName: string) {
+    const patientId =
+      await this.patientService.findPatientIdByFirstName(firstName);
+    if (!patientId) {
+      throw new NotFoundException(
+        `Patient with first name "${firstName}" not found`,
+      );
+    }
+    return { patientId }; // Return the patient ID
+  }
+
+  @Get('find-by-firstname/:firstName')
+  async findPatientByFirstName(
+    @Param('firstName') firstName: string,
+  ): Promise<Patient> {
+    const patient = await this.patientService.findPatientByFirstName(firstName);
+    return patient; // Return the full patient details
   }
 
   @Delete(':id')

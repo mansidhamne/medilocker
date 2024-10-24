@@ -5,7 +5,6 @@ export function middleware(request: NextRequest) {
   const user = request.cookies.get('user')?.value;
   
   if (!user && !request.nextUrl.pathname.startsWith('/auth')) {
-    
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
@@ -13,11 +12,11 @@ export function middleware(request: NextRequest) {
     const userData = JSON.parse(user);
     
     if (request.nextUrl.pathname.startsWith('/doctor') && userData.role !== 'doctor') {
-      return NextResponse.redirect(new URL('/patient/dashboard', request.url));
+      return NextResponse.redirect(new URL('/dashboard/patient', request.url));
     }
     
     if (request.nextUrl.pathname.startsWith('/patient') && userData.role !== 'patient') {
-      return NextResponse.redirect(new URL('/doctor/dashboard', request.url));
+      return NextResponse.redirect(new URL('/dashboard/doctor', request.url));
     }
   }
 

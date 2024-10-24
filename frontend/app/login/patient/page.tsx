@@ -10,7 +10,6 @@ interface LoginResponse {
     email: string;
     firstName: string;
     lastName: string;
-    dateOfBirth: string;
   };
 }
 
@@ -50,9 +49,8 @@ export default function PatientLoginPage() {
         ...data.patient,
         role: 'patient'
       }));
-
-      // Redirect to patient dashboard
-      router.push('/patient/dashboar');
+      
+      router.push('dashboard/patient');
     } catch (error:any) {
       setError(error.message);
     } finally {
@@ -62,7 +60,6 @@ export default function PatientLoginPage() {
 
   async function handleGoogleLogin() {
     try {
-      // Open Google OAuth popup
       window.open('http://localhost:3000/auth/patient/google', '_self');
     } catch (error) {
       setError('An error occurred with Google sign in');

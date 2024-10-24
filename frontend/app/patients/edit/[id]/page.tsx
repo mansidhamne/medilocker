@@ -94,7 +94,7 @@ const EditPatient = () => {
         body: JSON.stringify(updatedPatient),
       })
       if (response.ok) {
-        router.push('/dashboard')
+        router.push('dashboard/doctor')
       } else {
         throw new Error('Failed to update patient')
       }

@@ -41,11 +41,19 @@ export class CreatePatientDto {
 
   @IsNumber()
   @IsOptional()
+  height: number;
+
+  @IsNumber()
+  @IsOptional()
   pulseRate?: number;
 
   @IsNumber()
   @IsOptional()
   bloodPressure?: number;
+
+  @IsString()
+  @IsOptional()
+  bloodGroup?: string;
 
   @IsString()
   @IsNotEmpty()

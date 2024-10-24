@@ -11,6 +11,8 @@ export interface Prescription {
 // Define the Appointment interface
 export interface Appointment {
   problem: string;
+  doctorName: string;
+  location: string;
   date: Date; // You may want to change this to Date type for better date handling
   time: string;
   mode: string;
@@ -48,6 +50,9 @@ export class Patient {
   weight: number;
 
   @Prop()
+  height: number;
+
+  @Prop()
   pulseRate: number;
 
   @Prop()
@@ -58,6 +63,9 @@ export class Patient {
 
   @Prop()
   surgeryHistory: string;
+
+  @Prop()
+  bloodGroup: string;
 
   @Prop({
     type: [

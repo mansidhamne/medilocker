@@ -6,6 +6,12 @@ import { PatientModule } from './patients/patients.module';
 import { AppointmentModule } from './appointment/appointment.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { DoctorModule } from './doctor/doctor.module';
+import { ReportsModule } from './reports/reports.modules';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import * as path from 'path';
+import { ChatbotService } from './chatbot/chatbot.service';
+import { ChatbotController } from './chatbot/chatbot.controller';
 
 @Module({
   imports: [
@@ -22,9 +28,15 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     PatientModule,
     AppointmentModule,
     AuthModule,
+    DoctorModule,
+    ReportsModule,
+    ServeStaticModule.forRoot({
+      rootPath: path.join(__dirname, '..', 'uploads'),
+      serveRoot: '/uploads/',
+    }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, ChatbotController],
+  providers: [AppService, ChatbotService],
 })
 
 // @Module({

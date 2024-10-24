@@ -3,9 +3,6 @@ interface User {
     firstName: string;
     lastName: string;
     role: 'doctor' | 'patient';
-    specialization?: string;
-    isVerified?: boolean;
-    dateOfBirth?: string;
   }
   
   export const getUserFromStorage = (): User | null => {

@@ -28,15 +28,6 @@ export class Doctor extends Document {
   googleId?: string;
 
   @Prop()
-  specialization: string;
-
-  @Prop()
-  licenseNumber: string;
-
-  @Prop({ default: false })
-  isVerified: boolean;
-
-  @Prop()
   profilePicture?: string;
 }
 

@@ -9,9 +9,13 @@ import { PrescriptionModal } from '@/components/PrescriptionModal'
 import AddAppointment from '@/components/AddAppointment'
 
 interface Appointment {
+  patientId: string
   problem: string
+  time: string
   date: string
   mode: string
+  type: string
+  notes: string
   prescription: Prescription[]
 }
 

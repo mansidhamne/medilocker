@@ -12,6 +12,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import * as path from 'path';
 import { ChatbotService } from './chatbot/chatbot.service';
 import { ChatbotController } from './chatbot/chatbot.controller';
+import { GoogleStrategy } from './google.strategy';
 
 @Module({
   imports: [
@@ -36,7 +37,7 @@ import { ChatbotController } from './chatbot/chatbot.controller';
     }),
   ],
   controllers: [AppController, ChatbotController],
-  providers: [AppService, ChatbotService],
+  providers: [AppService, ChatbotService, GoogleStrategy],
 })
 
 // @Module({

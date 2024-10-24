@@ -22,7 +22,7 @@ const FunctionalCalendar: React.FC = () => {
 
   const fetchAppointments = async () => {
     try {
-      const response = await fetch('http://localhost:3000/appointment', {
+      const response = await fetch('https://medi-backend-two.vercel.app/appointment', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       });

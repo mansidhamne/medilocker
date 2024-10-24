@@ -65,7 +65,7 @@
 //   };
 
 //   const googleLogin = async () => {
-//     window.open('http://localhost:3000/auth/doctor/google', '_self');
+//     window.open('https://medi-backend-two.vercel.app/auth/doctor/google', '_self');
 //   };
 
 //   const logout = async () => {

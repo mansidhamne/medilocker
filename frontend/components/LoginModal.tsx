@@ -26,7 +26,7 @@ export default function LoginModal({ isOpen, onClose, loginType }: LoginModalPro
     setError('')
 
     try {
-      const response = await fetch(`http://localhost:3000/auth/${loginType}/login`, {
+      const response = await fetch(`https://medi-backend-two.vercel.app/auth/${loginType}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -127,7 +127,7 @@ export default function LoginModal({ isOpen, onClose, loginType }: LoginModalPro
             </div>
             {/* <button
               onClick={() => {
-                // window.open(`http://localhost:3000/auth/${loginType}/google`, '_self')
+                // window.open(`https://medi-backend-two.vercel.app/auth/${loginType}/google`, '_self')
                 window.open(
                     `${process.env.NEXT_PUBLIC_API_URL}/auth/${loginType}/google`,
                     'Google Login',

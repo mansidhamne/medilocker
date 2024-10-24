@@ -94,7 +94,7 @@ const PatientDashboard: React.FC = () => {
       const fetchPatientInfo = async () => {
         if (user) {
           try {
-            const response = await fetch(`http://localhost:3000/patients/find-by-firstName/Swara`)
+            const response = await fetch(`https://medi-backend-two.vercel.app/patients/find-by-firstName/Swara`)
             if (response.ok) {
               const data = await response.json()
               setPatientInfo(data)
@@ -115,7 +115,7 @@ const PatientDashboard: React.FC = () => {
     const fetchPatientId = async () => {
       if (user) {
         try {
-          const response = await fetch(`http://localhost:3000/patients/find-by-id/Swara`)
+          const response = await fetch(`https://medi-backend-two.vercel.app/patients/find-by-id/Swara`)
           if (response.ok) {
             const data = await response.json()
             return data.patientId
@@ -143,7 +143,7 @@ const PatientDashboard: React.FC = () => {
         formData.append('patientId', patientId)
         
         try {
-          const response = await fetch('http://localhost:3000/reports/upload', {
+          const response = await fetch('https://medi-backend-two.vercel.app/reports/upload', {
             method: 'POST',
             body: formData,
           })
@@ -167,7 +167,7 @@ const PatientDashboard: React.FC = () => {
       if (user) {
         try {
           const userId = await fetchPatientId();
-          const response = await fetch(`http://localhost:3000/patients/${userId}/appointments`, {
+          const response = await fetch(`https://medi-backend-two.vercel.app/patients/${userId}/appointments`, {
             headers: {
               'Content-Type': 'application/json',
             },
@@ -217,7 +217,7 @@ const PatientDashboard: React.FC = () => {
 
   const fetchReports = async () => {
     try {
-      const response = await fetch('http://localhost:3000/reports')
+      const response = await fetch('https://medi-backend-two.vercel.app/reports')
       if (response.ok) {
         const data = await response.json()
         setReports(data)
@@ -253,7 +253,7 @@ const PatientDashboard: React.FC = () => {
 
   const handleOpenPrescription = async (patientId: string, item: Appointment, appointmentIndex: number) => {
     try {
-      const response = await fetch(`http://localhost:3000/patients/${patientId}/appointments/${appointmentIndex}/prescriptions`)
+      const response = await fetch(`https://medi-backend-two.vercel.app/patients/${patientId}/appointments/${appointmentIndex}/prescriptions`)
       
       if (!response.ok) {
         throw new Error('Failed to fetch prescription data')

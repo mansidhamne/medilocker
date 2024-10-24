@@ -42,7 +42,7 @@ const MediMate: React.FC = () => {
       setInputMessage('')
       
       try {
-        const response = await fetch('http://localhost:3000/chat/message', {
+        const response = await fetch('https://medi-backend-two.vercel.app/chat/message', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

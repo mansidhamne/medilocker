@@ -26,7 +26,7 @@ const DoctorDashboard = () => {
   useEffect(() => {
     const fetchTotalAppointments = async () => {
       try {
-        const response = await fetch('http://localhost:3000/appointment/total');
+        const response = await fetch('https://medi-backend-two.vercel.app/appointment/total');
         const data = await response.json();
         setTotalAppointments(data.total);
       } catch (error) {
@@ -40,7 +40,7 @@ const DoctorDashboard = () => {
   useEffect(() => {
     const fetchTotalOnlineAppointments = async () => {
       try {
-        const response = await fetch('http://localhost:3000/appointment/total-online');
+        const response = await fetch('https://medi-backend-two.vercel.app/appointment/total-online');
         const data = await response.json();
         setTotalOnlineAppointments(data.total);
       } catch (error) {

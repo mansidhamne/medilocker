@@ -35,7 +35,7 @@ const BookAppointment: React.FC = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await fetch('http://localhost:3000/doctors')
+        const response = await fetch('https://medi-backend-two.vercel.app/doctors')
         if (response.ok) {
           const data = await response.json()
           setDoctors(data)
@@ -53,7 +53,7 @@ const BookAppointment: React.FC = () => {
   const fetchPatientName = async () => {
     if (user) {
       try {
-        const response = await fetch(`http://localhost:3000/patients/find-by-firstName/Swara`)
+        const response = await fetch(`https://medi-backend-two.vercel.app/patients/find-by-firstName/Swara`)
         if (response.ok) {
           const data = await response.json()
           const patientName = `${data.firstName} ${data.lastName}`
@@ -70,7 +70,7 @@ const BookAppointment: React.FC = () => {
   const fetchPatient = async () => {
     if (user) {
       try {
-        const response = await fetch(`http://localhost:3000/patients/find-by-firstName/Swara`)
+        const response = await fetch(`https://medi-backend-two.vercel.app/patients/find-by-firstName/Swara`)
         if (response.ok) {
           const data = await response.json()
           return data
@@ -88,7 +88,7 @@ const BookAppointment: React.FC = () => {
     e.preventDefault()
     try {
       const patient = await fetchPatient();
-      const response = await fetch(`http://localhost:3000/patients/${patient._id}/appointments`, {
+      const response = await fetch(`https://medi-backend-two.vercel.app/patients/${patient._id}/appointments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -26,7 +26,7 @@ export default function PatientLoginPage() {
     const formData = new FormData(event.currentTarget);
     
     try {
-      const response = await fetch('http://localhost:3000/auth/patient/login', {
+      const response = await fetch('https://medi-backend-two.vercel.app/auth/patient/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export default function PatientLoginPage() {
 
   async function handleGoogleLogin() {
     try {
-      window.open('http://localhost:3000/auth/patient/google', '_self');
+      window.open('https://medi-backend-two.vercel.app/auth/patient/google', '_self');
     } catch (error) {
       setError('An error occurred with Google sign in');
     }

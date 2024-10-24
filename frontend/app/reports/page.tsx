@@ -28,7 +28,7 @@ const UploadedReports: React.FC = () => {
 
   const fetchReports = async () => {
     try {
-      const response = await fetch('http://localhost:3000/reports')
+      const response = await fetch('https://medi-backend-two.vercel.app/reports')
       if (response.ok) {
         const data = await response.json()
         setReports(data)
@@ -55,7 +55,7 @@ const UploadedReports: React.FC = () => {
       formData.append('patientId', patientId)
       
       try {
-        const response = await fetch('http://localhost:3000/reports/upload', {
+        const response = await fetch('https://medi-backend-two.vercel.app/reports/upload', {
           method: 'POST',
           body: formData,
         })
@@ -79,7 +79,7 @@ const UploadedReports: React.FC = () => {
     if (!confirmDelete) return;
   
     try {
-      const response = await fetch(`http://localhost:3000/reports/${reportId}`, {
+      const response = await fetch(`https://medi-backend-two.vercel.app/reports/${reportId}`, {
         method: 'DELETE',
       });
   

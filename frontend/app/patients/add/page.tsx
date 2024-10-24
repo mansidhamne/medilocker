@@ -63,7 +63,7 @@ const AddPatient = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/patients', {
+      const response = await fetch('https://medi-backend-two.vercel.app/patients', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -87,7 +87,7 @@ const AddPatient = () => {
 
   const handleOpenPrescription = async (item: AppointmentHistory, appointmentIndex: number) => {
     try {
-      const response = await fetch(`http://localhost:3000/patients/${patientId}/appointments/${appointmentIndex}/prescriptions`)
+      const response = await fetch(`https://medi-backend-two.vercel.app/patients/${patientId}/appointments/${appointmentIndex}/prescriptions`)
       
       if (!response.ok) {
         throw new Error('Failed to fetch prescription data')
@@ -104,7 +104,7 @@ const AddPatient = () => {
 
   const handleAddAppointment = async (newAppointment: AppointmentHistory) => {
     try {
-      const response = await fetch(`http://localhost:3000/patients/${patientId}/appointments`, {
+      const response = await fetch(`https://medi-backend-two.vercel.app/patients/${patientId}/appointments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -127,7 +127,7 @@ const AddPatient = () => {
 
   const fetchAppointmentHistory = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/patients/${patientId}/appointments`, {
+      const response = await fetch(`https://medi-backend-two.vercel.app/patients/${patientId}/appointments`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

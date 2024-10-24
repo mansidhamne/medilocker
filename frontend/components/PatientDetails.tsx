@@ -53,7 +53,7 @@
 
 //   const fetchPatientData = async () => {
 //     try {
-//       const response = await fetch(`http://localhost:3000/patients/${id}`, {
+//       const response = await fetch(`https://medi-backend-two.vercel.app/patients/${id}`, {
 //         method: 'GET',
 //         headers: {
 //           'Content-Type': 'application/json',
@@ -72,7 +72,7 @@
 
 //   const fetchAppointments = async () => {
 //     try {
-//       const response = await fetch(`http://localhost:3000/patients/${id}/appointments`, {
+//       const response = await fetch(`https://medi-backend-two.vercel.app/patients/${id}/appointments`, {
 //         method: 'GET',
 //         headers: {
 //           'Content-Type': 'application/json',
@@ -96,7 +96,7 @@
 
 //   const handleOpenPrescription = async (item: Appointment, appointmentIndex: number) => {
 //     try {
-//       const response = await fetch(`http://localhost:3000/patients/${id}/appointments/${appointmentIndex}/prescriptions`)
+//       const response = await fetch(`https://medi-backend-two.vercel.app/patients/${id}/appointments/${appointmentIndex}/prescriptions`)
       
 //       if (!response.ok) {
 //         throw new Error('Failed to fetch prescription data')
@@ -113,7 +113,7 @@
 
 //   const handleAddAppointment = async (appointment: Appointment) => {
 //     try {
-//       const response = await fetch(`http://localhost:3000/patients/${id}/appointments`, {
+//       const response = await fetch(`https://medi-backend-two.vercel.app/patients/${id}/appointments`, {
 //         method: 'POST',
 //         headers: {
 //           'Content-Type': 'application/json',
@@ -285,7 +285,7 @@ export default function PatientDetails({ id }: { id: string }) {
 
   const fetchPatientData = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/patients/${id}`, {
+      const response = await fetch(`https://medi-backend-two.vercel.app/patients/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -304,7 +304,7 @@ export default function PatientDetails({ id }: { id: string }) {
 
   const fetchAppointments = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/patients/${id}/appointments`, {
+      const response = await fetch(`https://medi-backend-two.vercel.app/patients/${id}/appointments`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -328,7 +328,7 @@ export default function PatientDetails({ id }: { id: string }) {
 
   const handleOpenPrescription = async (item: Appointment, appointmentIndex: number) => {
     try {
-      const response = await fetch(`http://localhost:3000/patients/${id}/appointments/${appointmentIndex}/prescriptions`)
+      const response = await fetch(`https://medi-backend-two.vercel.app/patients/${id}/appointments/${appointmentIndex}/prescriptions`)
       
       if (!response.ok) {
         throw new Error('Failed to fetch prescription data')
@@ -345,7 +345,7 @@ export default function PatientDetails({ id }: { id: string }) {
 
   const handleAddAppointment = async (appointment: Appointment) => {
     try {
-      const response = await fetch(`http://localhost:3000/patients/${id}/appointments`, {
+      const response = await fetch(`https://medi-backend-two.vercel.app/patients/${id}/appointments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

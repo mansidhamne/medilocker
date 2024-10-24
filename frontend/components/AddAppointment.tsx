@@ -52,7 +52,7 @@ const AddAppointment: React.FC<AddAppointmentProps> = ({ onClose, onSave, existi
   // Fetch patients from the backend when the modal opens
   useEffect(() => {
     async function fetchPatients() {
-      const response = await fetch('http://localhost:3000/patients')
+      const response = await fetch('https://medi-backend-two.vercel.app/patients')
       const data = await response.json()
       console.log(data);
       setPatients(data)

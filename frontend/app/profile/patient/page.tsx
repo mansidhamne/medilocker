@@ -56,7 +56,7 @@ const PatientProfile: React.FC = () => {
     const fetchPatientID = async () => {
         if (user) {
             try {
-                const response = await fetch(`http://localhost:3000/patients/find-by-id/Swara}`)
+                const response = await fetch(`https://medi-backend-two.vercel.app/patients/find-by-id/Swara}`)
                 if (response.ok) {
                 const data = await response.json()
                 return data.patientId
@@ -76,7 +76,7 @@ const PatientProfile: React.FC = () => {
     const fetchPatientInfo = async () => {
         if (user) {
             try {
-                const response = await fetch(`http://localhost:3000/patients/find-by-firstName/Swara`)
+                const response = await fetch(`https://medi-backend-two.vercel.app/patients/find-by-firstName/Swara`)
                 if (response.ok) {
                   const data = await response.json()
                   setPatientInfo(data)
@@ -104,7 +104,7 @@ const PatientProfile: React.FC = () => {
     setIsSaving(true)
     try {
         const userId = await fetchPatientID()
-      const response = await fetch(`http://localhost:3000/patients/${userId}`, {
+      const response = await fetch(`https://medi-backend-two.vercel.app/patients/${userId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

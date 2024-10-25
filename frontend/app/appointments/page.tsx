@@ -320,6 +320,7 @@ export default function AppointmentsPage() {
                       required
                       className="w-full p-2 border mb-2"
                     >
+                      <option value="default">Mode</option>
                       <option value="in-person">In-Person</option>
                       <option value="online">Online</option>
                     </select>
@@ -336,6 +337,7 @@ export default function AppointmentsPage() {
                       required
                       className="w-full p-2 border mb-2"
                     >
+                      <option value="default">Type</option>
                       <option value="check-up">Check Up</option>
                       <option value="follow-up">Follow Up</option>
                     </select>

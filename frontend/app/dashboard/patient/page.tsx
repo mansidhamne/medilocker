@@ -290,7 +290,7 @@ const removePdfExtension = (fileName: string) => {
                   <div className="bg-blue-50 p-4 rounded-md" key={appointment._id}>
                     <div className="flex justify-between items-start">
                       <div>
-                        <h3 className="font-semibold">{appointment.doctorName}</h3>
+                        <h3 className="font-semibold">Dr. Mansi Dhamne</h3>
                         <p className="text-sm text-gray-600">{appointment.date}, {appointment.time}, {appointment.location}</p>
                         <p className="text-sm text-gray-600">{appointment.problem}</p>
                       </div>
@@ -401,7 +401,8 @@ const removePdfExtension = (fileName: string) => {
             <div className="space-y-8">
             <section className="bg-blue-600 text-white shadow rounded-lg p-6">
               <div className="flex justify-between items-start mb-4">
-                <h2 className="text-2xl font-bold">{patientInfo.firstName} {patientInfo.lastName}</h2>
+                <h2 className="text-2xl font-bold">{user.name}</h2>
+                {/* <h2 className="text-2xl font-bold">{patientInfo.firstName} {patientInfo.lastName}</h2> */}
                 <Link href="/profile/patient">  
                   <Edit className="cursor-pointer" />
                 </Link>

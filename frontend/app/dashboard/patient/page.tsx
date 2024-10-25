@@ -401,7 +401,7 @@ const removePdfExtension = (fileName: string) => {
             <div className="space-y-8">
             <section className="bg-blue-600 text-white shadow rounded-lg p-6">
               <div className="flex justify-between items-start mb-4">
-                <h2 className="text-2xl font-bold">{user.name}</h2>
+                {user ? (<h2 className="text-2xl font-bold">{user.name}</h2>) : (<h2 className="text-2xl font-bold">Vanashree Tajane</h2>)}
                 {/* <h2 className="text-2xl font-bold">{patientInfo.firstName} {patientInfo.lastName}</h2> */}
                 <Link href="/profile/patient">  
                   <Edit className="cursor-pointer" />

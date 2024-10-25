@@ -160,7 +160,11 @@ const PatientProfile: React.FC = () => {
             {!isEditing ? (
               <div className="space-y-6">
                 <div className="flex justify-between items-center">
-                  <h2 className="text-2xl font-bold">{user.name}</h2>
+                  {user ? (
+                    <h2 className="text-2xl font-bold">{user.name}</h2>
+                  ) : (
+                    <h2 className="text-2xl font-bold">Vanashree Tajane</h2>
+                  )}
                   {/* <h2 className="text-2xl font-semibold text-gray-800">{patientInfo.firstName} {patientInfo.lastName}</h2> */}
                   <button
                     onClick={() => setIsEditing(true)}
@@ -188,7 +192,11 @@ const PatientProfile: React.FC = () => {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <InputField label="Full Name" name="name" value={user.name} onChange={handleInputChange} />
+                  {user ? (
+                    <InputField label="Full Name" name="name" value={user.name} onChange={handleInputChange} />
+                  ) : (
+                    <InputField label="Full Name" name="name" value={`${patientInfo.firstName} ${patientInfo.lastName}`} onChange={handleInputChange} />
+                  )}
                   <InputField label="Patient ID" name="id" value={patientInfo._id} onChange={handleInputChange} readOnly />
                   <InputField label="Age" name="age" value={patientInfo.age} onChange={handleInputChange} type="number" />
                   <SelectField

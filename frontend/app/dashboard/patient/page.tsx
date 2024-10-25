@@ -94,7 +94,7 @@ const PatientDashboard: React.FC = () => {
       const fetchPatientInfo = async () => {
         if (user) {
           try {
-            const response = await fetch(`https://medi-backend-two.vercel.app/patients/find-by-firstName/Swara`)
+            const response = await fetch(`http://localhost:3000/patients/find-by-firstName/Swara`)
             if (response.ok) {
               const data = await response.json()
               setPatientInfo(data)
@@ -115,7 +115,7 @@ const PatientDashboard: React.FC = () => {
     const fetchPatientId = async () => {
       if (user) {
         try {
-          const response = await fetch(`https://medi-backend-two.vercel.app/patients/find-by-id/Swara`)
+          const response = await fetch(`http://localhost:3000/patients/find-by-id/Swara`)
           if (response.ok) {
             const data = await response.json()
             return data.patientId
@@ -143,7 +143,7 @@ const PatientDashboard: React.FC = () => {
         formData.append('patientId', patientId)
         
         try {
-          const response = await fetch('https://medi-backend-two.vercel.app/reports/upload', {
+          const response = await fetch('http://localhost:3000/reports/upload', {
             method: 'POST',
             body: formData,
           })
@@ -167,7 +167,7 @@ const PatientDashboard: React.FC = () => {
       if (user) {
         try {
           const userId = await fetchPatientId();
-          const response = await fetch(`https://medi-backend-two.vercel.app/patients/${userId}/appointments`, {
+          const response = await fetch(`http://localhost:3000/patients/${userId}/appointments`, {
             headers: {
               'Content-Type': 'application/json',
             },
@@ -217,7 +217,7 @@ const PatientDashboard: React.FC = () => {
 
   const fetchReports = async () => {
     try {
-      const response = await fetch('https://medi-backend-two.vercel.app/reports')
+      const response = await fetch('http://localhost:3000/reports')
       if (response.ok) {
         const data = await response.json()
         setReports(data)
@@ -245,7 +245,7 @@ const PatientDashboard: React.FC = () => {
     if (userMessage) {
       setChatMessages([...chatMessages, { text: userMessage, sender: 'user' }])
       setTimeout(() => {
-        setChatMessages(prev => [...prev, { text: "I'm sorry, I don't have enough information to answer that question. Please consult with your doctor for medical advice.", sender: 'bot' }])
+        setChatMessages(prev => [...prev, { text: "Check out the offical page of MediMate to chat in detail!", sender: 'bot' }])
       }, 1000)
       input.value = ''
     }
@@ -253,7 +253,7 @@ const PatientDashboard: React.FC = () => {
 
   const handleOpenPrescription = async (patientId: string, item: Appointment, appointmentIndex: number) => {
     try {
-      const response = await fetch(`https://medi-backend-two.vercel.app/patients/${patientId}/appointments/${appointmentIndex}/prescriptions`)
+      const response = await fetch(`http://localhost:3000/patients/${patientId}/appointments/${appointmentIndex}/prescriptions`)
       
       if (!response.ok) {
         throw new Error('Failed to fetch prescription data')
@@ -401,7 +401,7 @@ const removePdfExtension = (fileName: string) => {
             <div className="space-y-8">
             <section className="bg-blue-600 text-white shadow rounded-lg p-6">
               <div className="flex justify-between items-start mb-4">
-                <h2 className="text-2xl font-bold">{patientInfo.firstName}</h2>
+                <h2 className="text-2xl font-bold">{patientInfo.firstName} {patientInfo.lastName}</h2>
                 <Link href="/profile/patient">  
                   <Edit className="cursor-pointer" />
                 </Link>

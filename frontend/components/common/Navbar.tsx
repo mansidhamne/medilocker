@@ -64,7 +64,8 @@ const Navbar = () => {
           // onMouseLeave={() => setShowLogout(false)}
         > 
           <span onClick={toggleLogoutMenu} className="cursor-pointer font-medium ">
-            Dr. Mansi Dhamne
+            {/* Dr. Mansi Dhamne */}
+            Dr. {user.firstName} {user.lastName}
           </span>
           {showLogout && (
             <div className="absolute right-0 bg-blue-600 shadow-md mt-2 rounded-md">

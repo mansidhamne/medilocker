@@ -24,7 +24,7 @@
 
 // // Create axios instance with credentials
 // const api = axios.create({
-//   baseURL: 'http://localhost:3000',
+//   baseURL: 'http://localhost:3000/',
 //   withCredentials: true, // Important for cookies
 // });
 
@@ -65,7 +65,7 @@
 //   };
 
 //   const googleLogin = async () => {
-//     window.open('https://medi-backend-two.vercel.app/auth/doctor/google', '_self');
+//     window.open('http://localhost:3000/auth/doctor/google', '_self');
 //   };
 
 //   const logout = async () => {

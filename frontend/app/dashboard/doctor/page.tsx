@@ -14,6 +14,14 @@ const DoctorDashboard = () => {
   const today = new Date()
   const tomorrow = new Date(today)
   tomorrow.setDate(tomorrow.getDate() + 1)
+  const [user, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -26,7 +34,7 @@ const DoctorDashboard = () => {
   useEffect(() => {
     const fetchTotalAppointments = async () => {
       try {
-        const response = await fetch('https://medi-backend-two.vercel.app/appointment/total');
+        const response = await fetch('http://localhost:3000/appointment/total');
         const data = await response.json();
         setTotalAppointments(data.total);
       } catch (error) {
@@ -40,7 +48,7 @@ const DoctorDashboard = () => {
   useEffect(() => {
     const fetchTotalOnlineAppointments = async () => {
       try {
-        const response = await fetch('https://medi-backend-two.vercel.app/appointment/total-online');
+        const response = await fetch('http://localhost:3000/appointment/total-online');
         const data = await response.json();
         setTotalOnlineAppointments(data.total);
       } catch (error) {
@@ -56,7 +64,12 @@ const DoctorDashboard = () => {
     <div className="bg-gradient-to-br from-blue-50 to-teal-50 min-h-screen w-full pb-6">
       <Navbar />
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-12 py-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">Welcome, Dr. Mansi Dhamne</h1>
+        {user ? (
+           <h1 className="text-3xl font-bold text-gray-800 mb-8">Welcome, Dr. {user.lastName}</h1>
+        ) : (
+          <h1 className="text-3xl font-bold text-gray-800 mb-8">Welcome, Doctor</h1>
+        )}
+       
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="flex-1">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">

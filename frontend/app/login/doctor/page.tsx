@@ -26,7 +26,7 @@
 //     const formData = new FormData(event.currentTarget);
     
 //     try {
-//       const response = await fetch('https://medi-backend-two.vercel.app/auth/doctor/login', {
+//       const response = await fetch('http://localhost:3000/auth/doctor/login', {
 //         method: 'POST',
 //         headers: {
 //           'Content-Type': 'application/json',
@@ -69,7 +69,7 @@
 //   async function handleGoogleLogin() {
 //     try {
 //       // Open Google OAuth popup
-//       window.open('https://medi-backend-two.vercel.app/auth/doctor/google', '_self');
+//       window.open('http://localhost:3000/auth/doctor/google', '_self');
 //     } catch (error) {
 //       setError('An error occurred with Google sign in');
 //     }
@@ -181,7 +181,7 @@ export default function DoctorLoginPage() {
     const formData = new FormData(event.currentTarget);
 
     try {
-      const response = await fetch('https://medi-backend-two.vercel.app/auth/doctor/login', {
+      const response = await fetch('http://localhost:3000/auth/doctor/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -217,7 +217,7 @@ export default function DoctorLoginPage() {
   async function handleGoogleLogin() {
     try {
       // Open Google OAuth popup
-      window.open('https://medi-backend-two.vercel.app/auth/doctor/google', '_self');
+      window.open('http://localhost:3000/auth/doctor/google', '_self');
     } catch (error) {
       setError('An error occurred with Google sign in');
     }

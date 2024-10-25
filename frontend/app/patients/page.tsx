@@ -22,7 +22,7 @@ export default function PatientDirectory() {
 
   const fetchPatients = async () => {
     try {
-      const response = await fetch('https://medi-backend-two.vercel.app/patients', {
+      const response = await fetch('http://localhost:3000/patients', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

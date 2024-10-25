@@ -23,7 +23,7 @@
 
 //   const fetchPatients = async () => {
 //     try {
-//       const response = await axios.get('https://medi-backend-two.vercel.app/patients');
+//       const response = await axios.get('http://localhost:3000/patients');
 //       setPatients(response.data);
 //     } catch (error) {
 //       console.error('Error fetching patients:', error);
@@ -32,7 +32,7 @@
 
 //   const deletePatient = async (id: string) => {
 //     try {
-//       await axios.delete(`https://medi-backend-two.vercel.app/patients/${id}`);
+//       await axios.delete(`http://localhost:3000/patients/${id}`);
 //       fetchPatients(); // Refresh the list after deletion
 //     } catch (error) {
 //       console.error('Error deleting patient:', error);
@@ -119,7 +119,7 @@ const PatientTable = () => {
   const fetchPatients = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get('https://medi-backend-two.vercel.app/patients');
+      const response = await axios.get('http://localhost:3000/patients');
       setPatients(response.data);
     } catch (error) {
       console.error('Error fetching patients:', error);
@@ -131,7 +131,7 @@ const PatientTable = () => {
   const deletePatient = async (id: string) => {
     if (window.confirm('Are you sure you want to delete this patient?')) {
       try {
-        await axios.delete(`https://medi-backend-two.vercel.app/patients/${id}`);
+        await axios.delete(`http://localhost:3000/patients/${id}`);
         fetchPatients(); // Refresh the list after deletion
       } catch (error) {
         console.error('Error deleting patient:', error);

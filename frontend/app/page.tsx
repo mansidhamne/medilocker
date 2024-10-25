@@ -5,10 +5,12 @@ import { motion } from 'framer-motion'
 import { FaUserMd, FaUser, FaLock, FaHeartbeat, FaCalendarAlt, FaChartLine, FaFileAlt, FaComments, FaRobot } from 'react-icons/fa'
 import LoginModal from '@/components/LoginModal'
 import { useRouter } from 'next/navigation'
+import RegisterModal from '@/components/RegisterModal'
 
 export default function Home() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
   const [loginType, setLoginType] = useState<'doctor' | 'patient'>('patient')
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false)
   const router = useRouter();
 
   const openLoginModal = (type: 'doctor' | 'patient') => {
@@ -66,7 +68,7 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <button
-              onClick={() => openLoginModal('patient')}
+              onClick={() => setIsRegisterOpen(true)}
               className="bg-blue-600 text-white text-lg px-10 py-4 rounded-full hover:bg-blue-700 transition-colors shadow-lg transform hover:scale-105"
             >
               Get Started Now
@@ -161,6 +163,10 @@ export default function Home() {
           onClose={() => setIsLoginModalOpen(false)}
           loginType={loginType}
         />
+      )}
+
+      {isRegisterOpen && (
+        <RegisterModal isOpen={isRegisterOpen} onClose={() => setIsRegisterOpen(false)} loginType={loginType} />
       )}
     </div>
   )

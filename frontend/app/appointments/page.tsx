@@ -39,7 +39,7 @@ export default function AppointmentsPage() {
 
   const handleAddAppointment = async () => {
     try {
-      const response = await fetch('https://medi-backend-two.vercel.app/appointment', {
+      const response = await fetch('http://localhost:3000/appointment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newAppointment),
@@ -57,7 +57,7 @@ export default function AppointmentsPage() {
 
   const fetchAppointments = async () => {
       try {
-        const response = await fetch('https://medi-backend-two.vercel.app/appointment', {
+        const response = await fetch('http://localhost:3000/appointment', {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },
         });
@@ -96,7 +96,7 @@ export default function AppointmentsPage() {
     }
   
     try {
-      const response = await fetch(`https://medi-backend-two.vercel.app/appointment/${id}/notes`, {
+      const response = await fetch(`http://localhost:3000/appointment/${id}/notes`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

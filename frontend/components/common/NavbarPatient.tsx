@@ -68,11 +68,12 @@ const NavbarPatient = () => {
             <UserIcon />
           </Link>
           <span onClick={toggleLogoutMenu} className="cursor-pointer font-medium ">
-            {user.firstName} {user.lastName}
+            {/* {user.firstName} {user.lastName} */}
+            {user.name}
           </span>
-          <button onClick={handleLogout} className="text-white bg-blue-600 rounded-md block w-full text-left px-8 py-2 hover:bg-blue-300 hover:rounded-md">
+          {/* <button onClick={handleLogout} className="text-white bg-blue-600 rounded-md block w-full text-left px-8 py-2 hover:bg-blue-300 hover:rounded-md">
                 Logout
-              </button>
+              </button> */}
         </div>
           {showLogout && (
             <div className="absolute right-0 bg-blue-600 shadow-md mt-2 rounded-md">

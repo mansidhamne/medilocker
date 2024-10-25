@@ -53,7 +53,7 @@
 
 //   const fetchPatientData = async () => {
 //     try {
-//       const response = await fetch(`https://medi-backend-two.vercel.app/patients/${id}`, {
+//       const response = await fetch(`http://localhost:3000/patients/${id}`, {
 //         method: 'GET',
 //         headers: {
 //           'Content-Type': 'application/json',
@@ -72,7 +72,7 @@
 
 //   const fetchAppointments = async () => {
 //     try {
-//       const response = await fetch(`https://medi-backend-two.vercel.app/patients/${id}/appointments`, {
+//       const response = await fetch(`http://localhost:3000/patients/${id}/appointments`, {
 //         method: 'GET',
 //         headers: {
 //           'Content-Type': 'application/json',
@@ -96,7 +96,7 @@
 
 //   const handleOpenPrescription = async (item: Appointment, appointmentIndex: number) => {
 //     try {
-//       const response = await fetch(`https://medi-backend-two.vercel.app/patients/${id}/appointments/${appointmentIndex}/prescriptions`)
+//       const response = await fetch(`http://localhost:3000/patients/${id}/appointments/${appointmentIndex}/prescriptions`)
       
 //       if (!response.ok) {
 //         throw new Error('Failed to fetch prescription data')
@@ -113,7 +113,7 @@
 
 //   const handleAddAppointment = async (appointment: Appointment) => {
 //     try {
-//       const response = await fetch(`https://medi-backend-two.vercel.app/patients/${id}/appointments`, {
+//       const response = await fetch(`http://localhost:3000/patients/${id}/appointments`, {
 //         method: 'POST',
 //         headers: {
 //           'Content-Type': 'application/json',
@@ -285,7 +285,7 @@ export default function PatientDetails({ id }: { id: string }) {
 
   const fetchPatientData = async () => {
     try {
-      const response = await fetch(`https://medi-backend-two.vercel.app/patients/${id}`, {
+      const response = await fetch(`http://localhost:3000/patients/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -304,7 +304,7 @@ export default function PatientDetails({ id }: { id: string }) {
 
   const fetchAppointments = async () => {
     try {
-      const response = await fetch(`https://medi-backend-two.vercel.app/patients/${id}/appointments`, {
+      const response = await fetch(`http://localhost:3000/patients/${id}/appointments`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -328,7 +328,7 @@ export default function PatientDetails({ id }: { id: string }) {
 
   const handleOpenPrescription = async (item: Appointment, appointmentIndex: number) => {
     try {
-      const response = await fetch(`https://medi-backend-two.vercel.app/patients/${id}/appointments/${appointmentIndex}/prescriptions`)
+      const response = await fetch(`http://localhost:3000/patients/${id}/appointments/${appointmentIndex}/prescriptions`)
       
       if (!response.ok) {
         throw new Error('Failed to fetch prescription data')
@@ -345,7 +345,7 @@ export default function PatientDetails({ id }: { id: string }) {
 
   const handleAddAppointment = async (appointment: Appointment) => {
     try {
-      const response = await fetch(`https://medi-backend-two.vercel.app/patients/${id}/appointments`, {
+      const response = await fetch(`http://localhost:3000/patients/${id}/appointments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -402,7 +402,7 @@ export default function PatientDetails({ id }: { id: string }) {
                 <p className="text-lg"><span className="font-medium">Surgery History: </span> {patientData.surgeryHistory}</p>
             </div>
             <hr className="mb-4"/>
-            <h3 className="text-lg font-semibold mb-2">Reports</h3>
+            {/* <h3 className="text-lg font-semibold mb-2">Reports</h3>
             <div className="grid grid-cols-4 gap-4 mb-6">
               {['Blood Report', 'Liver Report', 'ECG', 'Kidney Report'].map((report) => (
                 <div key={report} className="bg-gray-100 p-4 rounded-lg text-center">
@@ -410,7 +410,7 @@ export default function PatientDetails({ id }: { id: string }) {
                   <p className="text-sm font-medium">{report}</p>
                 </div>
               ))}
-            </div>
+            </div> */}
 
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-semibold">Appointment History</h3>

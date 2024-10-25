@@ -13,6 +13,7 @@ import * as path from 'path';
 import { ChatbotService } from './chatbot/chatbot.service';
 import { ChatbotController } from './chatbot/chatbot.controller';
 import { GoogleStrategy } from './google.strategy';
+import { UserModule } from './users/user.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { GoogleStrategy } from './google.strategy';
       rootPath: path.join(__dirname, '..', 'uploads'),
       serveRoot: '/uploads/',
     }),
+    UserModule,
   ],
   controllers: [AppController, ChatbotController],
   providers: [AppService, ChatbotService, GoogleStrategy],

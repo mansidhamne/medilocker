@@ -22,7 +22,7 @@ export default function DoctorConsultations() {
   useEffect(() => {
     const fetchConsultations = async () => {
       try {
-        const response = await fetch('https://medi-backend-two.vercel.app/appointment/online')
+        const response = await fetch('http://localhost:3000/appointment/online')
         const data = await response.json()
         console.log('Consultations:', data)
         setConsultations(data)
